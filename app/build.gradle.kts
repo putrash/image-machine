@@ -54,6 +54,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.0")
 
+    implementation("io.insert-koin:koin-android:2.2.3")
+    implementation("io.insert-koin:koin-androidx-viewmodel:2.2.3")
+
     implementation("com.github.bumptech.glide:glide:4.13.1")
     annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")
 
