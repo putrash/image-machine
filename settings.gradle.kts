@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Image Machine"
-include ':app'
+include(":app")
