@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_menu"
+    app:startDestination="@id/machineListFragment">
+
+    <fragment
+        android:id="@+id/machineListFragment"
+        android:name="co.saputra.imagemachine.arch.ui.main.machine.MachineListFragment"
+        android:label="fragment_machine_list"
+        tools:layout="@layout/fragment_machine_list" />
+    <fragment
+        android:id="@+id/codeScanFragment"
+        android:name="co.saputra.imagemachine.arch.ui.main.scanner.CodeScanFragment"
+        android:label="fragment_code_scan"
+        tools:layout="@layout/fragment_code_scan" />
+</navigation>

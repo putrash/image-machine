@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="co.saputra.imagemachine.arch.ui.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_machineDetailFragment"
+            app:destination="@id/machineDetailFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_machineFormFragment"
+            app:destination="@id/machineFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/machineDetailFragment"
+        android:name="co.saputra.imagemachine.arch.ui.main.machine.detail.MachineDetailFragment"
+        android:label="fragment_machine_detail"
+        tools:layout="@layout/fragment_machine_detail" />
+    <fragment
+        android:id="@+id/machineFormFragment"
+        android:name="co.saputra.imagemachine.arch.ui.main.machine.form.MachineFormFragment"
+        android:label="fragment_machine_form"
+        tools:layout="@layout/fragment_machine_form" >
+        <action
+            android:id="@+id/action_machineFormFragment_to_machineDetailFragment"
+            app:destination="@id/machineDetailFragment" />
+    </fragment>
+</navigation>

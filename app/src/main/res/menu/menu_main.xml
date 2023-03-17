@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/machineListFragment"
+        android:icon="@drawable/ic_menu_list"
+        android:title="Machine Data"
+        app:showAsAction="withText"/>
+
+    <item
+        android:id="@+id/codeScanFragment"
+        android:icon="@drawable/ic_menu_scan"
+        android:title="Code Reader"
+        app:showAsAction="withText"/>
+</menu>
