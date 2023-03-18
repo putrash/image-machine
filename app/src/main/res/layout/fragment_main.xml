@@ -23,7 +23,6 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:elevation="4dp"
-        android:background="@color/white"
         app:menu="@menu/menu_main"
         app:labelVisibilityMode="labeled"
         app:itemHorizontalTranslationEnabled="false"
