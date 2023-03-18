@@ -2,6 +2,7 @@ package co.saputra.imagemachine
 
 import android.app.Application
 import co.saputra.imagemachine.di.databaseModule
+import co.saputra.imagemachine.di.localDataSourceModule
 import co.saputra.imagemachine.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
@@ -17,7 +18,7 @@ class App : Application() {
             androidLogger(Level.ERROR)
             androidContext(this@App)
             androidFileProperties()
-            modules(viewModelModule, databaseModule)
+            modules(viewModelModule, databaseModule, localDataSourceModule)
         }
     }
 }

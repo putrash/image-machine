@@ -21,4 +21,7 @@ data class Machine(
 
     @ColumnInfo(name = "code")
     val code: String = "",
+
+    @ColumnInfo(name = "maintenance_date")
+    val maintenanceDate: Long = 0,
 ) : Parcelable

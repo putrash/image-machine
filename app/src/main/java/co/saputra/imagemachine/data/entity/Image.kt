@@ -6,7 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-@Entity()
+@Entity
 @Parcelize
 data class Image(
     @PrimaryKey(autoGenerate = true)
@@ -14,7 +14,7 @@ data class Image(
     var id: Long = 0,
 
     @ColumnInfo(name = "machine_id")
-    var machineId: String = "",
+    var machineId: Long = 0,
 
     @ColumnInfo(name = "name")
     var name: String = "",

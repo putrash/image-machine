@@ -5,10 +5,10 @@ import androidx.room.Relation
 
 data class MachineWithImages(
     @Embedded
-    val machine: Machine,
+    val machine: Machine = Machine(),
     @Relation(
         parentColumn = "id",
         entityColumn = "machine_id"
     )
-    val images: List<Image>
+    val images: List<Image> = arrayListOf()
 )

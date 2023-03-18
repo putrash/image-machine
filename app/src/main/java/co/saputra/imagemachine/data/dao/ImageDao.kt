@@ -7,8 +7,10 @@ import co.saputra.imagemachine.data.entity.Image
 interface ImageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(image: Image)
+
     @Update
     fun update(image: Image)
-    @Query("DELETE FROM image WHERE id = :id")
+
+    @Query("DELETE FROM image WHERE image_id = :id")
     fun delete(id: Long)
 }

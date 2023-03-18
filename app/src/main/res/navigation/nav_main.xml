@@ -11,24 +11,24 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/action_mainFragment_to_machineDetailFragment"
-            app:destination="@id/machineDetailFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_machineFormFragment"
             app:destination="@id/machineFormFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_machineDetailFragment"
+            app:destination="@id/machineDetailFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/machineDetailFragment"
-        android:name="co.saputra.imagemachine.arch.ui.main.machine.detail.MachineDetailFragment"
-        android:label="fragment_machine_detail"
-        tools:layout="@layout/fragment_machine_detail" />
     <fragment
         android:id="@+id/machineFormFragment"
         android:name="co.saputra.imagemachine.arch.ui.main.machine.form.MachineFormFragment"
         android:label="fragment_machine_form"
         tools:layout="@layout/fragment_machine_form" >
         <action
-            android:id="@+id/action_machineFormFragment_to_machineDetailFragment"
-            app:destination="@id/machineDetailFragment" />
+            android:id="@+id/action_machineFormFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/machineDetailFragment"
+        android:name="co.saputra.imagemachine.arch.ui.main.machine.detail.MachineDetailFragment"
+        android:label="fragment_machine_detail"
+        tools:layout="@layout/fragment_machine_detail" />
 </navigation>

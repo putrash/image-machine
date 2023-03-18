@@ -19,7 +19,7 @@
         android:id="@+id/tvMachineNameLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Machine Name"
+        android:text="Machine Name *"
         android:layout_marginTop="16dp"
         android:paddingHorizontal="16dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
@@ -32,9 +32,9 @@
         android:id="@+id/tilMachineName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="e.g. Inclined AE 5A0G"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="4dp"
+        app:hintEnabled="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMachineNameLabel"
@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLines="1"
+            android:hint="e.g. Inclined AE 5A0G"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -54,7 +55,7 @@
         android:id="@+id/tvMachineTypeLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Machine Type"
+        android:text="Machine Type *"
         android:layout_marginTop="24dp"
         android:paddingHorizontal="16dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
@@ -67,9 +68,9 @@
         android:id="@+id/tilMachineType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="e.g. The inclined plane"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="4dp"
+        app:hintEnabled="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMachineTypeLabel"
@@ -81,6 +82,82 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLines="1"
+            android:hint="e.g. The inclined plane"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMachineCodeLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Machine QR Code"
+        android:layout_marginTop="24dp"
+        android:paddingHorizontal="16dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilMachineType"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMachineCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="4dp"
+        app:hintEnabled="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMachineCodeLabel"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etMachineCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLines="1"
+            android:maxLength="12"
+            android:hint="e.g. 110242114001 (12 digits)"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMachineDateLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Last Maintenance Date *"
+        android:layout_marginTop="24dp"
+        android:paddingHorizontal="16dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilMachineCode"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMachineDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="4dp"
+        app:hintEnabled="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMachineDateLabel"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etMachineDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLines="1"
+            android:editable="false"
+            android:focusable="false"
+            android:hint="Select Date"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -97,7 +174,7 @@
         android:background="@drawable/bg_button_disabled"
         android:enabled="false"
         style="@style/Widget.AppCompat.Button.Borderless"
-        app:layout_constraintTop_toBottomOf="@id/tilMachineType"
+        app:layout_constraintTop_toBottomOf="@id/tilMachineDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />

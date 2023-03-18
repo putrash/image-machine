@@ -24,6 +24,7 @@ interface MachineDao {
     @Query("SELECT * FROM machine ORDER BY type ASC")
     fun getAllMachinesByType() : LiveData<List<MachineWithImages>>
 
+    @Transaction
     @Query("SELECT * FROM machine WHERE id = :id")
-    fun getMachines(id: Long) : LiveData<MachineWithImages>
+    fun getMachine(id: Long) : LiveData<MachineWithImages>
 }
