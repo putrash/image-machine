@@ -27,4 +27,8 @@ interface MachineDao {
     @Transaction
     @Query("SELECT * FROM machine WHERE id = :id")
     fun getMachine(id: Long) : LiveData<MachineWithImages>
+
+    @Transaction
+    @Query("SELECT * FROM machine WHERE code = :code")
+    fun getMachineByCode(code: String) : LiveData<MachineWithImages?>
 }

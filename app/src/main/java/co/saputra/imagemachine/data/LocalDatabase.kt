@@ -13,7 +13,7 @@ import co.saputra.imagemachine.data.entity.Machine
         Image::class
     ],
     exportSchema = false,
-    version = 3
+    version = 4
 )
 abstract class LocalDatabase : RoomDatabase() {
     abstract fun imageDao(): ImageDao

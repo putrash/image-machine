@@ -49,6 +49,7 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.9.0")
     implementation("com.google.android.material:material:1.8.0")
+    implementation("com.google.mlkit:barcode-scanning:17.0.3")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
@@ -62,8 +63,12 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-viewmodel:2.2.3")
 
     implementation("com.github.bumptech.glide:glide:4.13.1")
-    implementation("androidx.camera:camera-view:1.2.1")
     annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")
+
+    implementation("androidx.camera:camera-core:1.2.1")
+    implementation("androidx.camera:camera-camera2:1.2.1")
+    implementation("androidx.camera:camera-view:1.2.1")
+    implementation("androidx.camera:camera-lifecycle:1.2.1")
 
     implementation("androidx.room:room-runtime:2.5.0")
     kapt("androidx.room:room-compiler:2.5.0")

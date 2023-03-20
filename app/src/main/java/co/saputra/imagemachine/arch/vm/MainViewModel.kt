@@ -33,6 +33,10 @@ class MainViewModel(
         return machineLocalSource.getMachine(id)
     }
 
+    fun getMachine(code: String): LiveData<MachineWithImages?> {
+        return machineLocalSource.getMachineByCode(code)
+    }
+
     fun getAllMachines(): LiveData<List<MachineWithImages>> = sortType.switchMap { sort ->
         machineLocalSource.getAllMachines(sort)
     }
@@ -94,5 +98,10 @@ class MainViewModel(
                 showError(throwable.message.toString())
             }
         }
+    }
+
+    fun setLoading(active: Boolean) {
+        if (active) showLoading()
+        else hideLoading()
     }
 }

@@ -24,6 +24,8 @@
         tools:layout="@layout/fragment_machine_form" >
         <action
             android:id="@+id/action_machineFormFragment_to_mainFragment"
+            app:popUpToInclusive="false"
+            app:popUpTo="@id/mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment

@@ -15,6 +15,8 @@ class MachineLocalSource(private val machineDao: MachineDao) {
 
     fun getMachine(id: Long) = machineDao.getMachine(id)
 
+    fun getMachineByCode(code: String) = machineDao.getMachineByCode(code)
+
     fun insert(machine: Machine) = machineDao.insert(machine)
 
     fun update(machine: Machine) = machineDao.update(machine)
