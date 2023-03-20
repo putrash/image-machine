@@ -19,6 +19,8 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(
     override val viewModel: MainViewModel by viewModel()
 
     override fun initView(view: View, savedInstaceState: Bundle?) {
+        managePermissions.checkPermissions()
+
         val navHostFragment = childFragmentManager.findFragmentById(R.id.containerMenu) as NavHostFragment
         val navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bottomNav, navController)

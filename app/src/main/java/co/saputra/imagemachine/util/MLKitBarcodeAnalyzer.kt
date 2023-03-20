@@ -40,3 +40,7 @@ class MLKitBarcodeAnalyzer(private val listener: ScanningResultListener) : Image
         }
     }
 }
+
+interface ScanningResultListener {
+    fun onScanned(result: String)
+}

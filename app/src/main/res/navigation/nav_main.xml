@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/machineDetailFragment"
-        android:name="co.saputra.imagemachine.arch.ui.main.MachineDetailFragment"
+        android:name="co.saputra.imagemachine.arch.ui.main.machine.detail.MachineDetailFragment"
         android:label="fragment_machine_detail"
         tools:layout="@layout/fragment_machine_detail" >
         <action

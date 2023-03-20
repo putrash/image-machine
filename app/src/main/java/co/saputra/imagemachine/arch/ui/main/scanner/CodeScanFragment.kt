@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.View
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -45,6 +44,20 @@ class CodeScanFragment : BaseFragment<FragmentCodeScanBinding, MainViewModel>(
     }
 
     override fun initView(view: View, savedInstaceState: Bundle?) {
+        managePermissions.checkPermissions()
+        initAction()
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (managePermissions.processPermissionsResult(requestCode, grantResults)) {
+            initAction()
+        } else {
+            managePermissions.checkPermissions()
+        }
+    }
+
+    private fun initAction() {
         binding.apply {
             viewFinder.post {
                 cameraExecutor = Executors.newSingleThreadExecutor()

@@ -1,9 +1,10 @@
-package co.saputra.imagemachine.arch.ui.main
+package co.saputra.imagemachine.arch.ui.main.machine.detail
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -56,21 +57,7 @@ class MachineDetailFragment : BaseFragment<FragmentMachineDetailBinding, MainVie
         id = getMachineId()
         binding.apply {
             toolbar.inflateMenu(R.menu.menu_detail)
-            toolbar.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.edit -> {
-                        val bundle = bundleOf(INTENT_MACHINE to id)
-                        findNavController().navigate(R.id.action_machineDetailFragment_to_machineFormFragment, bundle)
-                        return@setOnMenuItemClickListener true
-                    }
-                    R.id.delete -> {
-                        viewModel.deleteMachine(id)
-                        findNavController().navigate(R.id.action_machineDetailFragment_to_mainFragment)
-                        return@setOnMenuItemClickListener true
-                    }
-                    else -> return@setOnMenuItemClickListener true
-                }
-            }
+            toolbar.setOnMenuItemClickListener { item -> handleMenus(item)}
             toolbar.navigationIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_back_white)
             toolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
@@ -91,41 +78,71 @@ class MachineDetailFragment : BaseFragment<FragmentMachineDetailBinding, MainVie
         }
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (managePermissions.processPermissionsResult(requestCode, grantResults)) {
+            openGalleryForImages()
+        } else {
+            managePermissions.checkPermissions()
+        }
+    }
+
+    private fun handleMenus(item: MenuItem) : Boolean {
+        return when (item.itemId) {
+            R.id.edit -> {
+                val bundle = bundleOf(INTENT_MACHINE to id)
+                findNavController().navigate(R.id.action_machineDetailFragment_to_machineFormFragment, bundle)
+                true
+            }
+            R.id.delete -> {
+                viewModel.deleteMachine(id)
+                findNavController().navigate(R.id.action_machineDetailFragment_to_mainFragment)
+                true
+            }
+            else -> true
+        }
+    }
+
     private fun handleThumbnail(images: List<Image>) {
         binding.apply {
-            if (images.isEmpty()) {
-                tvImageMore.visibility = View.INVISIBLE
-                tvHelper.visibility = View.VISIBLE
-                tvHelper.text = "Add the thumbnail"
-                ivThumbnail.setOnClickListener {
-                    openGalleryForImages()
+            when (images.size) {
+                0 -> {
+                    tvImageMore.visibility = View.INVISIBLE
+                    tvHelper.visibility = View.VISIBLE
+                    tvHelper.text = "Add the thumbnail"
+                    ivThumbnail.setOnClickListener {
+                        managePermissions.checkPermissions()
+                        openGalleryForImages()
+                    }
                 }
-            } else {
+                1 -> {
+                    tvImageMore.visibility = View.GONE
+                    tvHelper.visibility = View.GONE
+                    ivThumbnail.setOnClickListener {
+                        val bundle = bundleOf("uri_image" to images[0].path)
+                        val extras = FragmentNavigatorExtras(ivThumbnail to "enlargeImage")
+                        findNavController()
+                            .navigate(R.id.action_machineDetailFragment_to_imageDetailFragment,
+                                bundle, null, extras)
+                    }
+                }
+                else -> {
+                    tvImageMore.visibility = View.VISIBLE
+                    tvHelper.visibility = View.VISIBLE
+                    ivThumbnail.setOnClickListener {
+                        val bundle = bundleOf(INTENT_MACHINE to id)
+                        findNavController()
+                            .navigate(R.id.action_machineDetailFragment_to_imageListFragment, bundle)
+                    }
+                }
+            }
+
+            if (images.isNotEmpty()) {
                 Glide.with(requireContext())
                     .load(Uri.parse(images[0].path))
                     .into(ivThumbnail)
                 tvImageMore.text = "+${images.size}"
                 tvHelper.text = "See More"
-
-                if (images.size == 1)  {
-                    tvImageMore.visibility = View.GONE
-                    tvHelper.visibility = View.GONE
-                    ivThumbnail.setOnClickListener {
-                        val bundle = bundleOf("uri_image" to images[0].path)
-                        val extras = FragmentNavigatorExtras(
-                            ivThumbnail to "enlargeImage")
-                        findNavController()
-                            .navigate(R.id.action_machineDetailFragment_to_imageDetailFragment,
-                            bundle, null, extras)
-                    }
-                } else {
-                    tvImageMore.visibility = View.VISIBLE
-                    tvHelper.visibility = View.VISIBLE
-                    ivThumbnail.setOnClickListener {
-                        val bundle = bundleOf(INTENT_MACHINE to id)
-                        findNavController().navigate(R.id.action_machineDetailFragment_to_imageListFragment, bundle)
-                    }
-                }
             }
         }
     }
