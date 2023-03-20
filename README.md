@@ -3,7 +3,7 @@
 ## Preview
 Here are the preview of the app,
 
-![](https://drive.google.com/file/d/1sHra0aF08PIQ9AVn0P85LdW7kkc0SIXK/view)
+https://user-images.githubusercontent.com/22090326/226285734-436c57da-2260-473b-9836-cab82f974c7b.mp4
 
 ## Guide
 To use the QR Scanner, there's a few step that you need to do :
