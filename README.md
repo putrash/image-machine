@@ -3,7 +3,13 @@
 ## Preview
 Here are the preview of the app,
 
-![](https://web.telegram.org/k/stream/%7B%22dcId%22%3A5%2C%22location%22%3A%7B%22_%22%3A%22inputDocumentFileLocation%22%2C%22id%22%3A%226107398088517748704%22%2C%22access_hash%22%3A%22-3962941701824370331%22%2C%22file_reference%22%3A%5B1%2C0%2C0%2C168%2C175%2C100%2C24%2C23%2C174%2C81%2C51%2C172%2C91%2C185%2C238%2C87%2C216%2C83%2C184%2C32%2C174%2C239%2C234%2C204%2C76%5D%7D%2C%22size%22%3A35353286%2C%22mimeType%22%3A%22video%2Fmp4%22%7D)
+![](https://drive.google.com/file/d/1sHra0aF08PIQ9AVn0P85LdW7kkc0SIXK/view)
+
+## Guide
+To use the QR Scanner, there's a few step that you need to do :
+1. Create the QR first, you can do it in <https://www.qr-code-generator.com/>
+2. Use the text one and type the Machine QR Code to that
+3. Then, the QR will be generated, you can scan that with this app
 
 ## Features
 There are some such features like,
