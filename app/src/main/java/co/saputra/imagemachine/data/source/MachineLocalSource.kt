@@ -1,15 +1,15 @@
 package co.saputra.imagemachine.data.source
 
 import androidx.lifecycle.LiveData
-import co.saputra.imagemachine.Constants.FILTER_NAME
-import co.saputra.imagemachine.Constants.FILTER_TYPE
+import co.saputra.imagemachine.Constants.SORT_NAME
+import co.saputra.imagemachine.Constants.SORT_TYPE
 import co.saputra.imagemachine.data.dao.MachineDao
 import co.saputra.imagemachine.data.entity.Machine
 import co.saputra.imagemachine.data.entity.MachineWithImages
 
 class MachineLocalSource(private val machineDao: MachineDao) {
-    fun getAllMachines(filter: String = FILTER_NAME): LiveData<List<MachineWithImages>> {
-       return if (filter == FILTER_TYPE) machineDao.getAllMachinesByType()
+    fun getAllMachines(sort: String = SORT_NAME): LiveData<List<MachineWithImages>> {
+       return if (sort == SORT_TYPE) machineDao.getAllMachinesByType()
        else machineDao.getAllMachinesByName()
     }
 

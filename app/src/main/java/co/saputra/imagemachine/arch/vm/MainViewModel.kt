@@ -1,6 +1,8 @@
 package co.saputra.imagemachine.arch.vm
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import co.saputra.imagemachine.base.BaseViewModel
 import co.saputra.imagemachine.data.entity.Image
@@ -11,15 +13,28 @@ import co.saputra.imagemachine.data.source.MachineLocalSource
 import co.saputra.imagemachine.util.parseDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 
 class MainViewModel(
     private val machineLocalSource: MachineLocalSource,
     private val imageLocalSource: ImageLocalSource
 ) : BaseViewModel() {
 
-    private fun generateCode() : String {
+    private val sortType = MutableLiveData<String>()
+
+    private fun generateCode(): String {
         return System.currentTimeMillis().toString()
+    }
+
+    fun setSortedType(type: String) {
+        sortType.value = type
+    }
+
+    fun getMachine(id: Long): LiveData<MachineWithImages> {
+        return machineLocalSource.getMachine(id)
+    }
+
+    fun getAllMachines(): LiveData<List<MachineWithImages>> = sortType.switchMap { sort ->
+        machineLocalSource.getAllMachines(sort)
     }
 
     fun insertMachine(name: String, type: String, code: String = "", maintenanceDate: String) {
@@ -40,15 +55,44 @@ class MainViewModel(
         }
     }
 
-    fun getMachine(id: Long) : LiveData<MachineWithImages> {
-        return machineLocalSource.getMachine(id)
+    fun updateMachine(id: Long, name: String, type: String, code: String, maintenanceDate: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                machineLocalSource.update(
+                    Machine(
+                        id = id,
+                        name = name,
+                        type = type,
+                        code = code.ifEmpty { generateCode() },
+                        maintenanceDate = maintenanceDate.parseDate().time
+                    )
+                )
+            } catch (throwable: Throwable) {
+                throwable.printStackTrace()
+                showError(throwable.message.toString())
+            }
+        }
     }
 
-    fun getAllMachines(): LiveData<List<MachineWithImages>> {
-        return machineLocalSource.getAllMachines()
+    fun deleteMachine(id: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                machineLocalSource.delete(id)
+            } catch (throwable: Throwable) {
+                throwable.printStackTrace()
+                showError(throwable.message.toString())
+            }
+        }
     }
 
     fun insertImage(image: Image) {
-        imageLocalSource.insert(image)
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                imageLocalSource.insert(image)
+            } catch (throwable: Throwable) {
+                throwable.printStackTrace()
+                showError(throwable.message.toString())
+            }
+        }
     }
 }

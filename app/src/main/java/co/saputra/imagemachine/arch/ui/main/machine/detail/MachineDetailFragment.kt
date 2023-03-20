@@ -8,6 +8,7 @@ import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import co.saputra.imagemachine.Constants.INTENT_MACHINE
 import co.saputra.imagemachine.R
@@ -34,43 +35,41 @@ class MachineDetailFragment : BaseFragment<FragmentMachineDetailBinding, MainVie
         if (result.resultCode == Activity.RESULT_OK || result.resultCode != Activity.RESULT_CANCELED) {
             val clipData = result.data?.clipData
             val data = result.data?.data
-            // If multiple images are selected
-            if (clipData != null) {
+            if (clipData != null) { // If multiple images are selected
                 val clipItem = clipData.itemCount
-                if (clipItem > 10) {
-                    showSnackBar("Maximum choose the images is 10!")
-                } else {
+                if (clipItem <= 10) {
                     for (i in 0 until clipItem) {
                         val imageUri = clipData.getItemAt(i).uri
                         insertImage(imageUri)
                     }
+                } else {
+                    showSnackBar("Maximum choose the images is 10!")
                 }
-            // If single item selected
-            } else if (data != null) {
+            } else if (data != null) { // If single item selected
                 insertImage(data)
             }
         }
     }
 
-    private fun insertImage(uri: Uri) {
-        requireContext().contentResolver
-            .takePersistableUriPermission(
-                uri,
-                Intent.FLAG_GRANT_READ_URI_PERMISSION
-                        or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-            )
-        viewModel.insertImage(
-            Image(
-                machineId = id,
-                name = uri.getFileName(requireContext()),
-                path = uri.toString(),
-            )
-        )
-    }
-
     override fun initView(view: View, savedInstaceState: Bundle?) {
         id = getMachineId()
         binding.apply {
+            toolbar.inflateMenu(R.menu.menu_detail)
+            toolbar.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.edit -> {
+                        val bundle = bundleOf(INTENT_MACHINE to id)
+                        findNavController().navigate(R.id.action_machineDetailFragment_to_machineFormFragment, bundle)
+                        return@setOnMenuItemClickListener true
+                    }
+                    R.id.delete -> {
+                        viewModel.deleteMachine(id)
+                        findNavController().navigate(R.id.action_machineDetailFragment_to_mainFragment)
+                        return@setOnMenuItemClickListener true
+                    }
+                    else -> return@setOnMenuItemClickListener true
+                }
+            }
             toolbar.navigationIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_back_white)
             toolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
@@ -108,6 +107,23 @@ class MachineDetailFragment : BaseFragment<FragmentMachineDetailBinding, MainVie
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         galleryResultLauncher.launch(intent)
+    }
+
+
+    private fun insertImage(uri: Uri) {
+        requireContext().contentResolver
+            .takePersistableUriPermission(
+                uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+                        or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            )
+        viewModel.insertImage(
+            Image(
+                machineId = id,
+                name = uri.getFileName(requireContext()),
+                path = uri.toString(),
+            )
+        )
     }
 
     private fun getMachineId(): Long {

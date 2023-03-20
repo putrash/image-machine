@@ -18,6 +18,12 @@ fun Int.toDp(): Int = (this / Resources.getSystem().displayMetrics.density).toIn
 
 fun Int.toPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()
 
+fun Long.isEmpty(): Boolean = (this == 0L)
+
+fun String.capitalize(): String {
+    return this.replaceFirstChar { it.uppercase() }
+}
+
 fun Date.formatDate(): String {
     val formatter = SimpleDateFormat(Constants.DATE, Locale.getDefault())
     return formatter.format(this)

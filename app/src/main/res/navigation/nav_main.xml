@@ -30,5 +30,12 @@
         android:id="@+id/machineDetailFragment"
         android:name="co.saputra.imagemachine.arch.ui.main.machine.detail.MachineDetailFragment"
         android:label="fragment_machine_detail"
-        tools:layout="@layout/fragment_machine_detail" />
+        tools:layout="@layout/fragment_machine_detail" >
+        <action
+            android:id="@+id/action_machineDetailFragment_to_machineFormFragment"
+            app:destination="@id/machineFormFragment" />
+        <action
+            android:id="@+id/action_machineDetailFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>
