@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/machineDetailFragment"
-        android:name="co.saputra.imagemachine.arch.ui.main.machine.detail.MachineDetailFragment"
+        android:name="co.saputra.imagemachine.arch.ui.main.MachineDetailFragment"
         android:label="fragment_machine_detail"
         tools:layout="@layout/fragment_machine_detail" >
         <action
@@ -37,5 +37,32 @@
         <action
             android:id="@+id/action_machineDetailFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_machineDetailFragment_to_imageDetailFragment"
+            app:destination="@id/imageDetailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_machineDetailFragment_to_imageListFragment"
+            app:destination="@id/imageListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageDetailFragment"
+        android:name="co.saputra.imagemachine.arch.ui.main.image.detail.ImageDetailFragment"
+        android:label="fragment_image_detail"
+        tools:layout="@layout/fragment_image_detail" />
+    <fragment
+        android:id="@+id/imageListFragment"
+        android:name="co.saputra.imagemachine.arch.ui.main.image.ImageListFragment"
+        android:label="fragment_image_list"
+        tools:layout="@layout/fragment_image_list" >
+        <action
+            android:id="@+id/action_imageListFragment_to_imageDetailFragment"
+            app:destination="@id/imageDetailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
 </navigation>

@@ -1,4 +1,4 @@
-package co.saputra.imagemachine.arch.ui.main.machine.detail
+package co.saputra.imagemachine.arch.ui.main
 
 import android.app.Activity
 import android.content.Intent
@@ -9,6 +9,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import co.saputra.imagemachine.Constants.INTENT_MACHINE
 import co.saputra.imagemachine.R
@@ -85,17 +86,45 @@ class MachineDetailFragment : BaseFragment<FragmentMachineDetailBinding, MainVie
                 tvMachineType.text = it.machine.type
                 tvMachineCode.text = it.machine.code
                 tvDate.text = Date(it.machine.maintenanceDate).formatDate()
-                if (it.images.isEmpty()) {
-                    tvHelper.text = "Add the thumbnail"
-                } else {
-                    Glide.with(requireContext())
-                        .load(Uri.parse(it.images[0].path))
-                        .into(ivThumbnail)
-                    tvImageMore.text = "+${it.images.size}"
-                    tvHelper.text = "See More"
-                }
+                handleThumbnail(it.images)
+            }
+        }
+    }
+
+    private fun handleThumbnail(images: List<Image>) {
+        binding.apply {
+            if (images.isEmpty()) {
+                tvImageMore.visibility = View.INVISIBLE
+                tvHelper.visibility = View.VISIBLE
+                tvHelper.text = "Add the thumbnail"
                 ivThumbnail.setOnClickListener {
                     openGalleryForImages()
+                }
+            } else {
+                Glide.with(requireContext())
+                    .load(Uri.parse(images[0].path))
+                    .into(ivThumbnail)
+                tvImageMore.text = "+${images.size}"
+                tvHelper.text = "See More"
+
+                if (images.size == 1)  {
+                    tvImageMore.visibility = View.GONE
+                    tvHelper.visibility = View.GONE
+                    ivThumbnail.setOnClickListener {
+                        val bundle = bundleOf("uri_image" to images[0].path)
+                        val extras = FragmentNavigatorExtras(
+                            ivThumbnail to "enlargeImage")
+                        findNavController()
+                            .navigate(R.id.action_machineDetailFragment_to_imageDetailFragment,
+                            bundle, null, extras)
+                    }
+                } else {
+                    tvImageMore.visibility = View.VISIBLE
+                    tvHelper.visibility = View.VISIBLE
+                    ivThumbnail.setOnClickListener {
+                        val bundle = bundleOf(INTENT_MACHINE to id)
+                        findNavController().navigate(R.id.action_machineDetailFragment_to_imageListFragment, bundle)
+                    }
                 }
             }
         }
