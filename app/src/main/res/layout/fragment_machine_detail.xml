@@ -28,7 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="380dp"
                     android:scaleType="center"
-                    android:background="#252525"
+                    android:background="?colorOnSecondary"
                     android:transitionName="enlargeImage"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -111,6 +111,7 @@
             android:layout_height="wrap_content"
             android:text="Last Maintance Date"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Overline"
+            android:textSize="16sp"
             android:paddingHorizontal="16dp"
             android:paddingBottom="2dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,12 +123,14 @@
             android:id="@+id/tvDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="25 December 2023"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textSize="18sp"
             android:paddingHorizontal="16dp"
+            app:fontFamily="@font/ibm_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDateLabel"
+            tools:text="25 December 2023"
             />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -136,6 +139,7 @@
             android:layout_height="wrap_content"
             android:text="Machine Type"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Overline"
+            android:textSize="16sp"
             android:layout_marginTop="16dp"
             android:paddingHorizontal="16dp"
             android:paddingBottom="2dp"
@@ -148,12 +152,14 @@
             android:id="@+id/tvMachineType"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Machine Type Name"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textSize="18sp"
+            app:fontFamily="@font/ibm_medium"
             android:paddingHorizontal="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvMachineTypeLabel"
+            tools:text="Machine Type Name"
             />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -161,6 +167,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Machine QR Code Number"
+            android:textSize="16sp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Overline"
             android:layout_marginTop="16dp"
             android:paddingHorizontal="16dp"
@@ -174,12 +181,14 @@
             android:id="@+id/tvMachineCode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="12212120821321"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textSize="18sp"
             android:paddingHorizontal="16dp"
+            app:fontFamily="@font/ibm_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvMachineCodeLabel"
+            tools:text="12212120821321"
             />
 
 

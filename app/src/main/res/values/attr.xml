@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorMask" format="color"/>
+    <attr name="colorMaskTransparent" format="color"/>
+    <attr name="colorReverse" format="color"/>
+    <attr name="colorReverseVariant" format="color"/>
+</resources>

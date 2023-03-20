@@ -1,18 +1,27 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.ImageMachine" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/blue</item>
+        <item name="colorOnPrimary">@color/black_alt</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondary">@color/blue</item>
+        <item name="colorSecondaryVariant">@color/blue</item>
+        <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <!-- <item name="android:textColorPrimary">@color/purple_200</item> -->
-        <!-- <item name="android:textColorSecondary">@color/white</item> -->
+        <item name="colorReverse">@color/white</item>
+        <item name="colorReverseVariant">@color/white_alt</item>
+        <item name="colorMask">@color/gray_black</item>
+        <item name="colorMaskTransparent">@color/gray_black_transparent</item>
+        <item name="fontFamily">@font/ibm</item>
+        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Core</item>
+        <item name="actionMenuTextAppearance">@style/TextAppearance.MaterialComponents.Headline6.Menu</item>
+        <item name="android:textColorPrimary">?attr/colorReverse</item>
+        <item name="android:textColorSecondary">?attr/colorReverse</item>
+        <item name="android:colorBackground">?attr/colorOnSecondary</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 </resources>

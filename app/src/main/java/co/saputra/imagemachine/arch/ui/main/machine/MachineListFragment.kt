@@ -41,6 +41,13 @@ class MachineListFragment : BaseFragment<FragmentMachineListBinding, MainViewMod
         super.observeLiveData()
         viewModel.setSortedType(SORT_NAME)
         viewModel.getAllMachines().observe(viewLifecycleOwner) { data ->
+            binding.apply {
+                if (data.isEmpty()) {
+                    tvEmpty.visibility = View.VISIBLE
+                } else {
+                    tvEmpty.visibility = View.GONE
+                }
+            }
             adapter.submitList(data)
         }
     }

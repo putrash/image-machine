@@ -17,8 +17,8 @@
             android:gravity="top"
             android:paddingHorizontal="16dp"
             android:layout_marginTop="32dp"
-            android:text="Machine."
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
+            android:text="MACHINE."
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSort"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:paddingHorizontal="16dp"
             android:text="SORT"
@@ -35,9 +35,24 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTitle"
             app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:paddingHorizontal="16dp"
+            android:text="Sorry, there's no data at this moment"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            android:visibility="gone"
             />
 
         <androidx.recyclerview.widget.RecyclerView

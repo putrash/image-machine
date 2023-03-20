@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="320dp"
         android:scaleType="fitCenter"
-        android:background="#252525"
+        android:background="?attr/colorOnPrimary"
         android:src="@drawable/ic_image"
         android:transitionName="enlargeImage"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Rounded"
